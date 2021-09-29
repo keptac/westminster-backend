@@ -1,0 +1,41 @@
+{
+  "name": "westminster-backend",
+  "version": "1.0.0",
+  "description": "westminster reporting system",
+  "main": "index.js",
+  "scripts": {
+    "test": "test-westminster",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keptac/westminster-backend.git"
+  },
+  "keywords": [
+    "westminster",
+    "keptac",
+    "techvivid",
+    "school",
+    "management",
+    "system",
+    "elearning"
+  ],
+  "author": "Chelenje",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keptac/westminster-backend/issues"
+  },
+  "homepage": "https://github.com/keptac/westminster-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0",
+    "convert-excel-to-json": "^1.7.0",
+    "dotenv": "^10.0.0",
+    "mongoose": "^5.12.14",
+    "multer": "^1.4.2",
+    "read-excel-file": "^5.2.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
