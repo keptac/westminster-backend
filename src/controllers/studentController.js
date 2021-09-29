@@ -24,16 +24,6 @@ exports.batchStudentsRegister= function (req, res) {
     batchRegisterStudents(req.file.filename,req, res );
 }
 
-//Online Application
-exports.onlineApplication = function (req, res) {
-    let application = new Student(req.body);
-    application.save(function (err, student) {
-        if (err)
-            res.send(err);
-        res.json(student);
-    });
-};
-
 exports.readStudent = function (req, res) {
     Student.find({studentId:req.params.studentId}, function (err, student) {
         if (err)
@@ -41,3 +31,15 @@ exports.readStudent = function (req, res) {
         res.json(student);
     });
 };
+
+// For reports get all students in a class
+exports.listStudentsPerClass = function (req, res) {
+    Student.find({ classId: req.params.classId }, function (err, students) {
+        if (err)
+            res.send(err);
+        console.log(students);
+        res.json(students);
+    });
+};
+
+
