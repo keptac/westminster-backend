@@ -7,7 +7,7 @@ module.exports = function (app) {
     var resources = require('../controllers/resourceController');
     var assignments = require('../controllers/assignmentsController');
     var subjects = require('../controllers/subjectController');
-    var submissions = require('../controllers/submissionsController');
+    var studentMarks = require('../controllers/studentMarksController');
     var studentSubjectEnrolments = require('../controllers/studentSubjectEnrolmentController');
     var multiplechoice = require('../controllers/multipleChoiceController');
     var students = require('../controllers/studentController');
@@ -22,11 +22,20 @@ module.exports = function (app) {
     app.route('/api/westminster/announcements')
         .get(announcements.list_all_announcements)
         .post(announcements.create_an_announcement);
-
     app.route('/api/westminster/announcements/:announcementId')
         .get(announcements.read_an_announcement)
         .put(announcements.update_an_announcement)
         .delete(announcements.delete_an_announcement);
+
+    //Student Marks Routes
+    app.route('/api/westminster/studentMarks/class/:classId')
+        .get(studentMarks.listStudentMarksByClassId);
+
+    app.route('/api/westminster/studentMarks/student/:studentId')
+        .get(studentMarks.studentMarksForStudent);
+
+    app.route('/api/westminster/studentMarks/:submissionId')
+        .delete(studentMarks.deleteStudentMarks);
 
 
     //Assignments
@@ -77,28 +86,6 @@ module.exports = function (app) {
         .get(subjects.readSubject)
         .put(subjects.updateSubject)
         .delete(subjects.deleteSubject);
-
-
-    //Submissions Routes
-    app.route('/api/esm/submissions/subject/:subjectCode')
-        .get(submissions.listSubmissionsByAssignmentId);
-
-    app.route('/api/esm/submissions/student/:subjectCode/:studentId')
-        .get(submissions.submissionsForStudent)
-        .put(submissions.update_submission);
-
-    app.route('/api/esm/submissions/:submissionId')
-        .get(submissions.readSubmission)
-        .put(submissions.gradeSubmission)
-        .delete(submissions.deleteSubmission);
-
-
-    //Multiple Choice Questions
-    app.route('/api/esm/multiplechoice')
-        .post(multiplechoice.createTest);
-
-    app.route('/api/esm/multiplechoice/:subjectCode/:testTitle')
-        .get(multiplechoice.getQuestions);
 
 
     //Student Routes
