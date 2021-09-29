@@ -2,8 +2,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var SubjectSchema = new Schema({
-    name: {
+var TeacherClassSchema = new Schema({
+    className: {
+        type: String,
+        required: 'Kindly enter the name of the subject'
+    },
+    classId: {
         type: String,
         required: 'Kindly enter the name of the subject'
     },
@@ -12,12 +16,20 @@ var SubjectSchema = new Schema({
         type: String,
     },
 
-    grade: {
-        type: Number,
+    subjectName: {
+        type: String,
+    },
+
+    level: {
+        type: String,
         required: 'Kindly enter the grade'
     },
 
     teacherId: {
+        type: String,
+        required: 'Kindly enter the Teacher for the subject'
+    },
+    teacherName: {
         type: String,
         required: 'Kindly enter the Teacher for the subject'
     },
@@ -26,14 +38,6 @@ var SubjectSchema = new Schema({
         type: Date,
         default: Date.now
     },
-
-    status: {
-        type: [{
-            type: String,
-            enum: ['ACTIVE', 'DISABLED']
-        }],
-        default: ['ACTIVE']
-    }
 });
 
-module.exports = mongoose.model('Subjects', SubjectSchema);
+module.exports = mongoose.model('TeacherClass', TeacherClassSchema);
