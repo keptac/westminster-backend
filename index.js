@@ -4,15 +4,14 @@ require('dotenv').config();
 var app = express(), port = process.env.PORT, mongoose = require('mongoose');
 
 //Register Models
-const assignment = require('./src/models/assignmentModel');
 const announcement = require('./src/models/AnnouncementsModel');
-const resources = require('./src/models/ResourcesModel'); 
+const classes = require('./src/models/classesModel');
+const reportSubmissions = require('./src/models/ReportSubmissionsModel'); 
 const student = require('./src/models/StudentModel');
-const studentEnrolment = require('./src/models/StudentEnrolment');
-const subject = require('./src/models/SubjectModel'); 
-const submissions = require('./src/models/SubmissionsModel');
-const multiplchoice = require('./src/models/MultipleChoiceModel');
-const onlineApplicaiton = require('./src/models/OnlineApplicationModel');
+const staff = require('./src/models/StaffModel');
+const studentMarks = require('./src/models/StudentMarksModel'); 
+const subjects = require('./src/models/SubjectsModel');
+const teacherClasses = require('./src/models/TeacherClassModel');
 const multer = require('multer');
 global.__basedir = __dirname;
 

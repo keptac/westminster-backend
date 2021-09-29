@@ -2,15 +2,12 @@
 
 
 module.exports = function (app) {
-
-    let announcements = require('../controllers/announcementsController');
-
+    var announcements = require('../controllers/announcementsController');
     var classes = require('../controllers/classesController');
     var subjects = require('../controllers/subjectsController');
     var submissions = require('../controllers/reportSubmissionController');
     var teacherClasses = require('../controllers/teacherClassesController');
     var studentMarks = require('../controllers/studentMarksController');
-
     var students = require('../controllers/studentController');
     var staff = require('../controllers/staffContoller');
     var upload = require('../middleware/upload');
