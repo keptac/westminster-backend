@@ -12,6 +12,7 @@ module.exports = function (app) {
     var studentMarks = require('../controllers/studentMarksController');
 
     var students = require('../controllers/studentController');
+    var staff = require('../controllers/staffContoller');
     var upload = require('../middleware/upload');
 
     //Batches|Bulk uploads
@@ -80,5 +81,16 @@ module.exports = function (app) {
 
     app.route('/api/westminster/students/:classId')
         .get(submissions.deleteReportSubmission)
+
+    // Staff Routes
+    app.route('/api/westminster/staff')
+        .get(staff.listStaffs)
+        .post(staff.registerStaff);
+    
+    app.route('/api/westminster/staff/:staffId')
+        .get(staff.readStaff)
+
+    app.route('/api/westminster/staff/authenticate')
+        .post(staff.staffAuthentication);
 
 };
