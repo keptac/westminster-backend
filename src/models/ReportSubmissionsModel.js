@@ -2,23 +2,28 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-let ResourceSchema = new Schema({
-    resourceName: {
+let ReportSubmissionSchema = new Schema({
+    className: {
         type: String,
-        required: 'Kindly enter the name of the resource'
+        required: 'Kindly enter the name of the class'
     },
 
-    subjectCode: {
+    subject: {
         type: String,
         required: 'Kindly enter the subjectCode'
     },
 
-    topicName: {
+    classId: {
         type: String,
     },
 
-    resourcePath: {
+    status: {
         type: String,
+    },
+
+    teacherName: {
+        type: String,
+        required: 'Teacher Id required'
     },
 
     teacherId: {
@@ -26,11 +31,11 @@ let ResourceSchema = new Schema({
         required: 'Teacher Id required'
     },
 
-    uploadedOn: {
+    reportingPeriod: {
         type: Date,
         default: Date.now
     },
 
 });
 
-module.exports = mongoose.model('Resources', ResourceSchema);
+module.exports = mongoose.model('ReportSubmissions', ReportSubmissionSchema);

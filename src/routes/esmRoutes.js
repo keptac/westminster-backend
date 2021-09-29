@@ -7,6 +7,7 @@ module.exports = function (app) {
 
     var classes = require('../controllers/classesController');
     var subjects = require('../controllers/subjectsController');
+    var submissions = require('../controllers/reportSubmissionController');
     var teacherClasses = require('../controllers/teacherClassesController');
     var studentMarks = require('../controllers/studentMarksController');
 
@@ -69,7 +70,15 @@ module.exports = function (app) {
         .get(subjects.listAllSubjects)
         .post(subjects.addSubject);
 
-    app.route('/api/westminster/students/:classId')
+    app.route('/api/westminster/students/:subjectCode')
         .get(subjects.deleteSubject)
+
+    // Report Submission Routes
+    app.route('/api/westminster/reportsubmissions')
+        .get(submissions.listAllReportSubmissions)
+        .post(submissions.addReportSubmission);
+
+    app.route('/api/westminster/students/:classId')
+        .get(submissions.deleteReportSubmission)
 
 };
