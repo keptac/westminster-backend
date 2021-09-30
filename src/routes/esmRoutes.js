@@ -8,12 +8,16 @@ module.exports = function (app) {
     var submissions = require('../controllers/reportSubmissionController');
     var teacherClasses = require('../controllers/teacherClassesController');
     var studentMarks = require('../controllers/studentMarksController');
+    var reportGeneration = require('../controllers/reportGenerationController');
     var students = require('../controllers/studentController');
     var staff = require('../controllers/staffContoller');
     var upload = require('../middleware/upload');
 
     //Batches|Bulk uploads
     app.post('/api/esm/batch-student-registation', upload, students.batchStudentsRegister);
+
+    app.route('/api/westminster/studentMarks/reportgeneration')
+        .get(reportGeneration.generateReports);
 
     //Announcement Routes
     app.route('/api/westminster/announcements')
