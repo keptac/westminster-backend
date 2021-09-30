@@ -30,6 +30,9 @@ module.exports = function (app) {
         .delete(announcements.delete_an_announcement);
 
     //Student Marks Routes
+    app.route('/api/westminster/studentMarks')
+        .post(studentMarks.submitMarks);
+
     app.route('/api/westminster/studentMarks/class/:classId')
         .get(studentMarks.listStudentMarksByClassId);
 
