@@ -13,6 +13,7 @@ exports.listAllReportSubmissions = function (req, res) {
 exports.checkSubmissionStatus = function(req, res) {
     ReportSubmission.find({teacherId: req.params.teacherId, subject: req.params.subjectCode}, function(err, marks) {
         if (err)
+        
             res.send(err);
         if(marks.length>0){
             res.json({submitted:true})
