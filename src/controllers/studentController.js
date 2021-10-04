@@ -37,7 +37,6 @@ exports.listStudentsPerClass = function (req, res) {
     Student.find({ classId: req.params.classId }, function (err, students) {
         if (err)
             res.send(err);
-        console.log(students);
         res.json(students);
     });
 };

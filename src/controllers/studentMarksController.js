@@ -20,6 +20,7 @@ exports.studentMarksForStudent = function(req, res) {
 
 //Students submits the Assignment - student function
 exports.submitMarks = function(req, res) {
+
     var new_marks = new StudentMarks(req.body);
     new_marks.save(function(err, marks) {
         if (err)

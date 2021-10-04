@@ -14,6 +14,7 @@ module.exports = function (app) {
     var upload = require('../middleware/upload');
 
     //Batches|Bulk uploads
+    // app.route('/',).get('Welcome to westmunster')
     app.post('/api/esm/batch-student-registation', upload, students.batchStudentsRegister);
 
     app.route('/api/westminster/studentMarks/reportgeneration')
@@ -62,13 +63,16 @@ module.exports = function (app) {
     app.route('/api/westminster/students/:studentId')
         .get(students.readStudent)
     
+    app.route('/api/westminster/students/class/:classId')
+        .get(students.listStudentsPerClass)
+    
     // Classes Routes
     app.route('/api/westminster/class')
         .get(classes.listClasses)
         .post(classes.addClass);
 
-    app.route('/api/westminster/students/:classId')
-        .get(classes.deleteClass)
+    app.route('/api/westminster/class/:classId')
+        .delete(classes.deleteClass)
 
     // Subjects Routes
     app.route('/api/westminster/subjects')
@@ -82,6 +86,9 @@ module.exports = function (app) {
     app.route('/api/westminster/reportsubmissions')
         .get(submissions.listAllReportSubmissions)
         .post(submissions.addReportSubmission);
+    
+    app.route('/api/westminster/reportsubmissions/teacherSubmissionStatus/:teacherId/:subjectCode')
+        .get(submissions.checkSubmissionStatus)
 
     app.route('/api/westminster/students/:classId')
         .get(submissions.deleteReportSubmission)
