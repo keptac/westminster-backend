@@ -10,6 +10,18 @@ exports.listAllReportSubmissions = function (req, res) {
     });
 };
 
+exports.checkSubmissionStatus = function(req, res) {
+    ReportSubmission.find({teacherId: req.params.teacherId, subject: req.params.subjectCode}, function(err, marks) {
+        if (err)
+            res.send(err);
+        if(marks.length>0){
+            res.json({submitted:true})
+        }else{
+            res.json({submitted:false})
+        }
+    });
+};
+
 exports.addReportSubmission = function (req, res) {
     let newReportSubmission = new ReportSubmission(req.body);
     newReportSubmission.save(function (err, reportSubmissions) {
