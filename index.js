@@ -5,6 +5,7 @@ var app = express(), port = process.env.PORT, mongoose = require('mongoose');
 
 //Register Models
 const announcement = require('./src/models/AnnouncementsModel');
+const classes = require('./src/models/classesModel');
 const reportSubmissions = require('./src/models/ReportSubmissionsModel'); 
 const student = require('./src/models/StudentModel');
 const staff = require('./src/models/StaffModel');
@@ -12,7 +13,7 @@ const studentMarks = require('./src/models/StudentMarksModel');
 const subjects = require('./src/models/SubjectsModel');
 const teacherClasses = require('./src/models/TeacherClassModel');
 const multer = require('multer');
-const classes = require('./src/models/classesModel');
+
 global.__basedir = __dirname;
 
 // mongoose instance connection url connection
