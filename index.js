@@ -32,7 +32,6 @@ var allowCrossDomain = function(req, res, next) {
     next();
 }
 
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('./public'));
