@@ -22,7 +22,7 @@ exports.addClass = function (req, res) {
 
 exports.deleteClass = function (req, res) {
     Classes.remove({
-        _id: req.params.classId
+        classId: req.params.classId
     }, function (err, classes) {
         if (err)
             res.send(err);

@@ -14,6 +14,7 @@ module.exports = function (app) {
     var upload = require('../middleware/upload');
 
     //Batches|Bulk uploads
+    // app.route('/',).get('Welcome to westmunster')
     app.post('/api/esm/batch-student-registation', upload, students.batchStudentsRegister);
 
     app.route('/api/westminster/studentMarks/reportgeneration')
@@ -70,8 +71,8 @@ module.exports = function (app) {
         .get(classes.listClasses)
         .post(classes.addClass);
 
-    app.route('/api/westminster/students/:classId')
-        .get(classes.deleteClass)
+    app.route('/api/westminster/class/:classId')
+        .delete(classes.deleteClass)
 
     // Subjects Routes
     app.route('/api/westminster/subjects')
