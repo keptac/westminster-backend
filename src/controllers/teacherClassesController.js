@@ -11,7 +11,7 @@ exports.listTeacherClasses = function(req, res) {
 };
 
 exports.listTeacherClassPerTeacher = function(req, res) {
-    TeacherClass.find({teacherId:req.body.teacherId}, function(err, teacherClass) {
+    TeacherClass.find({teacherId:req.params.teacherId}, function(err, teacherClass) {
         if (err)
             res.send(err);
         res.json(teacherClass);

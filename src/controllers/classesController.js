@@ -3,6 +3,7 @@ let mongoose = require('mongoose'), Classes = mongoose.model('Classes');
 
 //Classes
 exports.listClasses = function (req, res) {
+    console.log("Returning classes");
     Classes.find({ }, function (err, assignment) {
         if (err)
             res.send(err);
