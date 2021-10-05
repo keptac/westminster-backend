@@ -17,8 +17,11 @@ module.exports = function (app) {
     // app.route('/',).get('Welcome to westmunster')
     app.post('/api/esm/batch-student-registation', upload, students.batchStudentsRegister);
 
-    app.route('/api/westminster/studentMarks/reportgeneration/:path')
+    app.route('/api/westminster/studentMarks/reportgeneration')
         .get(reportGeneration.generateReports);
+    
+    // app.route('/api/westminster/studentMarks/reportgeneration/:path')
+    //     .get(reportGeneration.generateReportsToFolder);
 
     //Announcement Routes
     app.route('/api/westminster/announcements')
