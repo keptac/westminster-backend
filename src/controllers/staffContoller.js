@@ -10,6 +10,14 @@ exports.listStaffs = function (req, res) {
     });
 };
 
+exports.listUserByType = function (req, res) {
+    Staff.find({userType: req.param.userType}, function (err, staff) {
+        if (err)
+            res.send(err);
+        res.json(staff);
+    });
+};
+
 exports.registerStaff = function (req, res) {
     let new_staff = new Staff(req.body);
     new_staff.save(function (err, staff) {

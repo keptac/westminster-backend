@@ -97,6 +97,9 @@ module.exports = function (app) {
     app.route('/api/westminster/staff')
         .get(staff.listStaffs)
         .post(staff.registerStaff);
+
+    app.route('/api/westminster/staffType/:userType')
+        .get(staff.listUserByType)
     
     app.route('/api/westminster/staff/:staffId')
         .get(staff.readStaff)
