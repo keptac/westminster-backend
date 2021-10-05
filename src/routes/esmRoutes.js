@@ -17,7 +17,7 @@ module.exports = function (app) {
     // app.route('/',).get('Welcome to westmunster')
     app.post('/api/esm/batch-student-registation', upload, students.batchStudentsRegister);
 
-    app.route('/api/westminster/studentMarks/reportgeneration')
+    app.route('/api/westminster/studentMarks/reportgeneration/:path')
         .get(reportGeneration.generateReports);
 
     //Announcement Routes

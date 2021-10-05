@@ -6,13 +6,12 @@ var fs = require("fs");
 var html_to_pdf = require('html-pdf-node');
 const downloadsFolder = require('downloads-folder');
 const html = fs.readFileSync(__dirname+"/reportTemplate.html", "utf8");
-const path = downloadsFolder();
+// const path = downloadsFolder();
 
-const folderName = path+'/Westminster Weekly Reports'
 var reportCount = 0;
 
 exports.generateReports= function(req, res) {
-
+    const folderName = req.param.path+'/Westminster Weekly Reports'
     try {
         if (!fs.existsSync(folderName)) {
             fs.mkdirSync(folderName)
