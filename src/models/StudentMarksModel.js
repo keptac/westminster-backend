@@ -14,7 +14,7 @@ var StudentMarksSchema = new Schema({
     },
     studentId: {
         type: String,
-        required: 'Kindly enter the class code'
+        required: 'Kindly enter the studentId'
     },
     avatarUrl: {
         type: String,
