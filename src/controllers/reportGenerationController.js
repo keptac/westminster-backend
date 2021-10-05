@@ -7,7 +7,7 @@ var html_to_pdf = require('html-pdf-node');
 const downloadsFolder = require('downloads-folder');
 const html = fs.readFileSync(__dirname+"/reportTemplate.html", "utf8");
 
-exports.generateReports= function(req, res) {
+exports.generateReports= function(_req, res) {
     const folderName = 'public/Westminster Weekly Reports'
     var reportCount = 0;
     var studentReports = [];
@@ -21,22 +21,25 @@ exports.generateReports= function(req, res) {
     }
 
     Students.find({}, function (err, students) {
-        if (err)
+        try {
+            if (err)
             res.send(err);
         students.forEach(element => {
-            StudentMarks.find({studentId: element.studentId}, function(err, marks) {
+            StudentMarks.find({studentId: element.studentId}, function(err, _marks) {
                 if (err)
                     res.send(err);
             });
+
             let options = { format: 'A4', path:folderName+'/'+element.name+element.surname+'.pdf', landscape:true};
             let file = { content: html };
-            html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
+            html_to_pdf.generatePdf(file, options).then(_pdfBuffer => {
             });
 
             studentReports.push({
                 studentName: element.name+element.surname,
                 reportPath: folderName+'/'+element.name+element.surname+'.pdf'
             })
+
             reportCount = reportCount + 1;
         });
         res.send(
@@ -46,6 +49,11 @@ exports.generateReports= function(req, res) {
                 'success':true
             }
         );
+        } catch (error) {
+            console.log(error);
+            res.send({success:false, message:'Oops, an internal error occured. We are fixing it'});
+        }
+        
     });
 };
 
