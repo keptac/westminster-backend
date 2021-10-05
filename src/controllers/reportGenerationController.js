@@ -1,48 +1,49 @@
-'use strict';
-
 var mongoose = require('mongoose'), StudentMarks = mongoose.model('StudentMarks'), Students = mongoose.model('Students');
 
-var fs = require("fs");
-var html_to_pdf = require('html-pdf-node');
-const downloadsFolder = require('downloads-folder');
-const html = fs.readFileSync(__dirname+"/reportTemplate.html", "utf8");
-const path = downloadsFolder();
+exports.generateReports = async function(_req, res) {
+    var reportCount = 0;
+    var studentReportsFinal = [];
+    var resultStudents = [];
+    var resultMarks = [];
 
-const folderName = path+'/Westminster Weekly Reports'
-var reportCount = 0;
 
-exports.generateReports= function(req, res) {
-
-    try {
-        if (!fs.existsSync(folderName)) {
-            fs.mkdirSync(folderName)
-        }
-    } catch (err) {
-       res.send(err);
-    }
-
-    Students.find({}, function (err, students) {
-        if (err)
-            res.send(err);
-        students.forEach(element => {
-            StudentMarks.find({studentId: element.studentId}, function(err, marks) {
-                if (err)
-                    res.send(err);
-            });
-            let options = { format: 'A4', path:folderName+'/'+element.name+element.surname+'.pdf', landscape:true};
-            let file = { content: html };
-            html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
-            });
-            reportCount = reportCount + 1;
-        });
-        res.send(
-            {
-                'reportsGenerated':reportCount,
-                'message':'Reports generated successfully. You can find them at '+folderName,
-                'success':true
+    Students.find({}, async function (err, students) {
+        try {
+            if (err)
+                res.send(err);
+            for (const element of students) {
+                StudentMarks.find({studentId: element.studentId}, async function(err, marks) {
+                    resultMarks= await marks;
+                    console.log(resultMarks);
+                    if(marks.length >0){
+                        if (err){
+                            res.send(err);
+                        }else{
+                            const stud = {
+                                studentName: element.name+' '+element.surname,
+                                results: marks
+                            };
+                            studentReportsFinal.push(stud);
+                        }
+                    }
+                    console.log('-----Inside----->>>>>>>'); 
+                });
+                console.log('-----Outside----->>>>>>>'); 
+                console.log(studentReportsFinal); 
+                reportCount = reportCount + 1;
             }
-        );
+            // students.forEach(element => );
+
+            res.send(
+                {
+                    'reportsGenerated':reportCount,
+                    'results': studentReportsFinal,
+                    'success':true
+                }
+            );
+        } catch (error) {
+            console.log(error);
+            res.send({success:false, message:'Oops, an internal error occured. We are fixing it'});
+        }
     });
-
-
 };
