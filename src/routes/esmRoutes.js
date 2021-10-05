@@ -19,6 +19,9 @@ module.exports = function (app) {
 
     app.route('/api/westminster/studentMarks/reportgeneration')
         .get(reportGeneration.generateReports);
+    
+    // app.route('/api/westminster/studentMarks/reportgeneration/:path')
+    //     .get(reportGeneration.generateReportsToFolder);
 
     //Announcement Routes
     app.route('/api/westminster/announcements')
