@@ -14,8 +14,8 @@ exports.addSubject = function (req, res) {
     let newSubject = new Subject(req.body);
     newSubject.save(function (err, subjects) {
         if (err)
-            res.send(err);
-        res.json(subjects);
+            res.send({success:false, message:"An error occured please contact admin", error:err});
+        res.json({success:true, message:"Subject added successfully."});
     });
 };
 

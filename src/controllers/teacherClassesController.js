@@ -22,8 +22,8 @@ exports.createTeacherClass = function(req, res) {
     let new_teacherClass = new TeacherClass(req.body);
     new_teacherClass.save(function(err, teacherClass) {
         if (err)
-            res.send(err);
-        res.json(teacherClass);
+            res.send({success:false, message:"An error occured please contact admin", error:err});
+        res.json({success:true, message:"Class created successfully."});
     });
 };
 
