@@ -14,8 +14,8 @@ exports.create_an_announcement = function (req, res) {
     let new_announcement = new Announcements(req.body);
     new_announcement.save(function (err, announcement) {
         if (err)
-            res.send(err);
-        res.json(announcement);
+            res.send({success:false, message:"An error occured please contact admin", error:err});
+        res.json({success:true, message:"Announcement posted successfully."});
     });
 };
 

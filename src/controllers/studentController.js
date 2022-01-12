@@ -15,8 +15,8 @@ exports.registerStudent = function (req, res) {
     let new_student = new Student(req.body);
     new_student.save(function (err, student) {
         if (err)
-            res.send(err);
-        res.json(student);
+            res.send({success:false, message:"An error occured please contact admin", error:err});
+        res.json({success:true, message:"Student Register successfully."});
     });
 };
 

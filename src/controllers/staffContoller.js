@@ -38,7 +38,7 @@ exports.registerStaff = async function (req, res) {
                     console.log(err);
                     res.status(400).send({success:false,message:"Registration failed. Please contact the Admin or your helpdesk.", error:error});
                 }else{
-                    res.json({success:true, message:"Account has been created successfull. Please login to activate account"});
+                    res.json({success:true, message:"Account has been created successfully. Please login to activate account"});
                 }
             });
         }
@@ -83,11 +83,11 @@ exports.staffAuthentication = async function (req, res) {
             }
             res.status(201).json({success:true, message:'Authentication successful', user:userBody})
         }else{
-            res.status(401).json({success:false, message:'Invalid email or password. ', error:"Invalid Email or password"})
+            res.json({success:false, message:'Invalid email or password. ', error:"Invalid Email or password"})
         }
     } catch (err) {
         console.log(err);
-        res.status(400).send({success:false,message:"Snap, something happened. Please contact the Admin or your helpdesk.", error:error});
+        res.send({success:false,message:"Snap, something happened. Please contact the Admin or your helpdesk.", error:error});
     }
 };
 
