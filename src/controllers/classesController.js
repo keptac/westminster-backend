@@ -15,8 +15,8 @@ exports.addClass = function (req, res) {
     let newClass = new Classes(req.body);
     newClass.save(function (err, classes) {
         if (err)
-            res.send(err);
-        res.json(classes);
+            res.send({success:false, message:"An error occured please contact admin", error:err});
+        res.json({success:true, message:"Class added successfully."});
     });
 };
 

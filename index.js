@@ -18,7 +18,7 @@ global.__basedir = __dirname;
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.DATABASE_URL,{
+mongoose.connect(process.env.DATABASE_URL_DEV,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,

@@ -27,8 +27,8 @@ exports.addReportSubmission = function (req, res) {
     let newReportSubmission = new ReportSubmission(req.body);
     newReportSubmission.save(function (err, reportSubmissions) {
         if (err)
-            res.send(err);
-        res.json(reportSubmissions);
+            res.send({success:false, message:"An error occured please contact admin", error:err});
+        res.json({success:true, message:"Report submitted successfully."});
     });
 };
 

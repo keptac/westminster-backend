@@ -13,8 +13,8 @@ exports.listStudentMarksByClassId= function(req, res) {
 exports.studentMarksForStudent = function(req, res) {
     StudentMarks.find({studentId: req.params.studentId}, function(err, marks) {
         if (err)
-            res.send(err);
-        res.json(marks);
+            res.send({success:false, message:"An error occured", error:err});
+        res.json({success:true, message:"Student Reuslts returned", marks});
     });
 };
 
@@ -24,8 +24,8 @@ exports.submitMarks = function(req, res) {
     var new_marks = new StudentMarks(req.body);
     new_marks.save(function(err, marks) {
         if (err)
-            res.send(err);
-        res.json(marks);
+            res.send({success:false, message:"An error occured please contact admin", error:err});
+        res.json({success:true, message:"Marks submitted successfully."});
     });
 };
 
